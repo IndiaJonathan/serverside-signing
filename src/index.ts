@@ -3,8 +3,13 @@ import fetch from 'node-fetch';
 import { PublicKeyApi, ServerSigningClient } from '@gala-chain/connect';
 import { ethers } from 'ethers';
 
+const local = true;
 
-const restServer = "http://localhost:3001/asset/"
+//Use this for local along with https://github.com/IndiaJonathan/galachain-baby-ops/blob/master/README.md
+const localRestServer = "http://localhost:3001/asset/"
+
+//Use this for gateway, todo: allow users to register here
+const stageRestServer = "https://galachain-gateway-chain-platform-stage-chain-platform-eks.stage.galachain.com/asset/"
 const app = express();
 
 app.use(express.json());
@@ -26,7 +31,8 @@ app.get('/test', async (req: Request, res: Response) => {
 
     const connection = new ServerSigningClient(randomWallet.privateKey)
 
-    const publicKeyClient = new PublicKeyApi(restServer+'PublicKeyContract', connection);
+    const uri = (local ? localRestServer : stageRestServer) + 'PublicKeyContract';
+    const publicKeyClient = new PublicKeyApi(uri, connection);
     const profile = await publicKeyClient.GetMyProfile();
     res.send(profile);
 });
