@@ -1,0 +1,25 @@
+{
+  "name": "express-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@gala-chain/api": "^1.4.3",
+    "@gala-chain/connect": "^1.4.3",
+    "ethers": "^6.13.2",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "@types/node": "^20.4.2",
+    "@types/node-fetch": "^2.6.11",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
